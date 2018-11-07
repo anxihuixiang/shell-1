@@ -1,9 +1,9 @@
 #!/bin/bash
-#--------------------------------------------------------
-# Function: install nginx for centos7
+#--------------------------------
+# Function: install nginx for Ubuntu
 # Update:   2018-11-07
 # Author:   kirinlabs
-#--------------------------------------------------------
+#--------------------------------
 
 APP=nginx-1.15.6.tar.gz
 DIR=nginx-1.15.6
@@ -21,11 +21,11 @@ function Debug(){
     echo ""
 }
 
-yum install -y wget
-
 #Installing dependencies
-yum install -y gcc gcc-c++ autoconf automake cmake libtool
-yum install -y pcre pcre-devel zlib zlib-devel openssl openssl-devel
+apt-get install -y gcc autoconf automake libtool cmake
+apt-get install -y libpcre3 libpcre3-dev zlib1g zlib1g-dev openssl libssl-dev
+
+ln -s /usr/lib/gcc /usr/lib/cc
 
 #Creating user and group
 #useradd -s /sbin/nologin -M www
@@ -33,7 +33,7 @@ groupadd www
 useradd -g www www
 usermod -s /sbin/nologin www
 
-#Downloading
+#Download
 cd $DOWNPATH
 [ ! -f ${DOWNPATH}/${APP} ]&&{
     Debug "Starting download nginx..."
@@ -42,18 +42,18 @@ cd $DOWNPATH
 
 if [ $? -gt 1 ]
 then
-    Debug "Nginx Installer: download ${APP} error...."
+    Debug "Nginx Installer: download ${APP} error..."
     exit 404
 fi
 
 #Starting install nginx
 [ ! -d ${DOWNPATH}/${DIR} ]&&{
-    tar -zxvf $APP
+    tar -zxvf ${APP}
 }
 
 if [ $? -gt 1 ]
 then
-    Debug "Nginx Installer: tar ${APP} error...."
+    Debug "Nginx Installer: tar ${APP} error..."
     exit 405
 fi
 
