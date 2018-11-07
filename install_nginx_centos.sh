@@ -1,8 +1,8 @@
 #!/bin/bash
 #--------------------------------------------------------
-# Function: Install nginx for CentOS7
+# Function: install nginx for centos7
 # Update:   2018-11-07
-# Author:   Kirinlabs
+# Author:   kirinlabs
 #--------------------------------------------------------
 
 APP=nginx-1.15.6.tar.gz
